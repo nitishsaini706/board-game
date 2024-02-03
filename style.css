@@ -1,0 +1,25 @@
+
+
+#ui { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#row{
+    display: flex;
+}
+
+.cell{
+    
+    border: solid 2px black;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+
+    
+}
+
