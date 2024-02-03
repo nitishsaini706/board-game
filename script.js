@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cells = document.querySelectorAll('.cell');
-    let xPosition = 4; // Initial position of 'X'
-    let oPosition = getRandomPosition(xPosition); // Initial position of 'O'
+    let x = 4; 
+    let o = random(x); 
 
     // console.log(cells);
-    // Set initial positions
-    cells[xPosition - 1].value = 'X';
-    cells[oPosition - 1].value = 'O';
+   
+    cells[x - 1].value = 'X';
+    cells[o - 1].value = 'O';
 
     document.addEventListener('keydown', (event) => {
         const key = event.key;
@@ -16,38 +16,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function moveX(direction) {
-        let newXPosition = xPosition;
+        let newX = x;
         switch (direction) {
             case 'ArrowUp':
-                newXPosition = xPosition > 3 ? xPosition - 3 : xPosition;
+                newX = x > 3 ? x - 3 : x;
                 break;
             case 'ArrowDown':
-                newXPosition = xPosition < 7 ? xPosition + 3 : xPosition;
+                newX = x < 7 ? x + 3 : x;
                 break;
             case 'ArrowLeft':
-                newXPosition = xPosition % 3 !== 1 ? xPosition - 1 : xPosition;
+                newX = x % 3 !== 1 ? x - 1 : x;
                 break;
             case 'ArrowRight':
-                newXPosition = xPosition % 3 !== 0 ? xPosition + 1 : xPosition;
+                newX = x % 3 !== 0 ? x + 1 : x;
                 break;
         }
-        console.log(newXPosition);
-        if (newXPosition !== xPosition) {
-            cells[newXPosition - 1].value = 'X';
-            xPosition = newXPosition;
+        console.log(newX);
+        if (newX !== x) {
+            cells[newX - 1].value = 'X';
+            x = newX;
 
-            if (newXPosition === oPosition) {
-                oPosition = getRandomPosition(newXPosition);
-                cells[oPosition - 1].value = 'O';
+            if (newX === o) {
+                o = random(newX);
+                cells[o - 1].value = 'O';
             }
         }
     }
 
-    function getRandomPosition(excludePosition) {
+    function random(cur) {
         let position;
         do {
             position = Math.floor(Math.random() * 9) + 1;
-        } while (position === excludePosition);
+        } while (position === cur);
         return position;
     }
 });
